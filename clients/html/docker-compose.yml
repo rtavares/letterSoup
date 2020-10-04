@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  html_client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${CONTAINER_NAME}
+#    command: /${PROJECT_WORK_DIR}/start_client.sh
+    command: python3 -m http.server $CLIENT_PORT --directory source
+    volumes:
+      - .:/${PROJECT_WORK_DIR}
+    ports:
+      - ${CLIENT_PORT}:${CLIENT_PORT}
+
+
+

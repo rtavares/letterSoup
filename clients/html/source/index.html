@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <script src="js/jquery.js"></script>
+    <script src="js/popper.min.js"></script>
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+    <script src="bootstrap/js/bootstrap.js"></script>
+
+    <style>
+        body {
+            padding: 15px;
+        }
+    </style>
+    <title>Simple HTML Client</title>
+</head>
+<body>
+
+<div class="jumbotron">
+    <h3 class="text-center">Django Blueprint - HTML API Client</h3>
+  </div>
+
+  <div class="container">
+    <div id="content_listing" class="alert alert-primary" role="alert" style="display:none;">
+            <h3 id="listing_title" class="text-center">listing_title</h3>
+    </div>
+
+    <div class="row" id="content_row">
+        <div class="col">
+        </div>
+    </div>
+  </div>
+
+    <script>
+        let api_host = 'http://localhost:8000';
+        $().ready(function(){
+            list_data();
+        });
+        /* ----------------------------------------- */
+
+        function list_data(page=null){
+            let content_title = "All Data:";
+            let url = api_host + "/api/listdata/";
+            if (page !== null){
+                url += page;
+            }
+
+            $("div#content_row").html('');
+
+            $.ajax({
+                url: url,
+                success: function(data) {
+                    if(data){
+                        $(data.results).each(function(index, row){
+                            data_line = '<div class="col-lg-3 col-md-6 mb-4">';
+                            data_line += '<div class="card h-100 text-white bg-primary">';
+                            data_line += '<h3>' + row.name + '</h3>';
+                            data_line += '<div class="card-body">';
+                            data_line += row.description;
+                            data_line += '</div>';
+                            data_line += '<div class="card-footer">';
+                            data_line += row.id;
+                            data_line += '</div>';
+                            data_line += '</div>';
+                            data_line += '</div>';
+
+                            $("div#content_row").append(data_line);
+                        });
+                    }
+                    else {
+                        data_line = 'No data to display.';
+                        $("div#content_row").append(data_line);
+                    }
+                },
+
+                error: function() {
+                    content_title = 'An error occurred';
+                    }
+            });
+
+            $("#listing_title").html(content_title);
+            $("div#content_listing").show();
+        }
+        /* ----------------------------------------- */
+    </script>
+</body>
+</html>
