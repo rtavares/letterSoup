@@ -37,5 +37,5 @@ class Home(View):
 
 class SampleDataViewSet(viewsets.ModelViewSet):
     """ DRF View """
-    queryset = SampleData.objects.all().order_by('name')
+    queryset = SampleData.objects.all().order_by('pk')
     serializer_class = SampleDataSerializer
