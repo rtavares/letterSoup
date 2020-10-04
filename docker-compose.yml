@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  project_db:
+  lettersoup_db:
     image: postgres:11.5-alpine
     container_name: ${DB_CONTAINER_NAME}
     volumes:
@@ -12,7 +12,7 @@ services:
     networks:
       - ${DOCKER_NETWORK_NAME}
 
-  project:
+  lettersoup:
     build:
       context: .
       dockerfile: Dockerfile
@@ -34,7 +34,7 @@ services:
 networks:
 #  TODO: Check the usage of variables in 'networks'
 #  ${DOCKER_NETWORK_NAME}:
-  project_NET:
+  lettersoup_NET:
 volumes:
   postgres_data:
 
