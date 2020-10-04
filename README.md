@@ -1,4 +1,4 @@
-## Django plygroung project - LetterSoup   
+## Django playground project - LetterSoup   
 ### Description:
 - Pet project to play with the 'lettersoup' concept around data manipulation with Python.
 - Based on my blueprint [Django Headless Blueprint](https://bitbucket.org/raultavares/django-headless-blueprint/src/master/README.md) 
