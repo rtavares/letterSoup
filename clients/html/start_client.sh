@@ -1,3 +1,3 @@
 . .env
-echo "Starting HTML CLient Server"
+echo "Starting HTML Client Server"
 python3 -m http.server $CLIENT_PORT
